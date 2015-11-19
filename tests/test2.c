@@ -1,27 +1,25 @@
 #include "utest.h"
-#include "elempool.h"
+#include "../src/elempool.h"
 
-
-void allocate1k(struct Elem **head) {
-	for(int i=0; i < 1000; i++) {
-		struct Elem *e = allocElem();
-		u_isnotnull("unexpected allocation failure", e);
-		
-		e->val = i;
-		e->next = *head;
-		*head = e;
-	}
-}
 
 
 void test2(void)
 {
 	/* Allocate all the 1000 elements */
 	struct Elem *head = NULL;
-	allocate1k(& head);
+	struct Elem *e = 0;
+	for(int i=0; i < 1000; i++) {
+		e = allocElem();
+		u_isnotnull("unexpected allocation failure", e);
+		
+		e->val = i;
+		e->next = head;
+		head = e;
+	}
+
 	
 	/* No element should be free */
-	struct Elem *e = allocElem();
+	e = allocElem();
 	u_isnull("unexpected allocation success", e);
 
 	/* check the list */
@@ -53,9 +51,8 @@ void test2(void)
 		
 		
 	/* Allocate all the 1000 elements */
-	struct Elem *head = NULL;
 	for(int i=0; i < 1000; i++) {
-		struct Elem *e = allocElem();
+		e = allocElem();
 		u_isnotnull("unexpected allocation failure", e);
 		
 		e->val = i;
@@ -63,7 +60,7 @@ void test2(void)
 		head = e;
 	}
 	/* No element should be free */
-	struct Elem *e = allocElem();
+	e = allocElem();
 	u_isnull("unexpected allocation success", e);
 
 	/* free all elements */

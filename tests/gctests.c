@@ -14,10 +14,10 @@ static struct option long_options[] = {
 };
 
 extern void test0(void);
-extern void test1(void) { u_success("test1"); };
-extern void test2(void) { u_success("test2"); };
-extern void test3(void) { u_success("test3"); };
-extern void test4(void) { u_success("test3"); };
+extern void test1(void);
+extern void test2(void);
+extern void test3(void);
+extern void test4(void);
 
 
 static void (*tests[])(void) = {
@@ -28,13 +28,19 @@ static void (*tests[])(void) = {
 	test4,
 };
 
+void usage(char *aname) {
+  fprintf(stderr, "usage: %s {--all | --t{0-4}}\n", aname);  
+}
+
 int main(int argc, char **argv) {
 	while(1) {
 		int option_index=0;
 		int nopt = getopt_long(argc, argv, "",
 				     long_options, &option_index);
-		if (nopt == -1)
-			break;
+		if (nopt == -1) {
+		  usage(argv[0]);
+		  break;
+		}
 		switch(nopt) {
 		case 0:
 			for(int i =0; i < 5; i++)
@@ -44,7 +50,7 @@ int main(int argc, char **argv) {
 			if (1 <= nopt && nopt <= 5)
 				tests[nopt-1]();
 			else
-				fprintf(stderr, "usage: gctests [--all] [--t{0-4}]\n");
+			  usage(argv[0]);
 		}
 	}
 	return 0;
