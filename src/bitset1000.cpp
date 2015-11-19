@@ -1,7 +1,8 @@
 #include <bitset>
-#include <libbitset1000.h>
+#include "bitset1000.h"
+#include <cassert>
 
-use std;
+using namespace std;
 
 static bitset<1000> bitfield {};
 
@@ -16,7 +17,7 @@ void bt1k_set(int n, bool val) {
   bitfield[n] = val;
 }
 
-bool val bt1k_get(int n) {
+bool bt1k_get(int n) {
   assert(n >= 0 && n < 1000);
 
   return bitfield[n];

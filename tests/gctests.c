@@ -1,22 +1,23 @@
 #include <stdio.h>
 #include <assert.h>
 #include <getopt.h>
+#include "utest.h"
 
 static struct option long_options[] = {
 	{"all", no_argument, 0,  0 },
-	{"t0",  no_argument, 0,  0 },
-	{"t1",  no_argument, 0,  0 },
-	{"t2",  no_argument, 0,  0 },
-	{"t3",  no_argument, 0,  0 },
-	{"t4",  no_argument, 0,  0 },
+	{"t0",  no_argument, 0,  1 },
+	{"t1",  no_argument, 0,  2 },
+	{"t2",  no_argument, 0,  3 },
+	{"t3",  no_argument, 0,  4 },
+	{"t4",  no_argument, 0,  5 },
 	{0,     0,           0,  0 }
 };
 
-void test0(void) {};
-void test1(void) {};
-void test2(void) {};
-void test3(void) {};
-void test4(void) {};
+extern void test0(void);
+extern void test1(void) { u_success("test1"); };
+extern void test2(void) { u_success("test2"); };
+extern void test3(void) { u_success("test3"); };
+extern void test4(void) { u_success("test3"); };
 
 
 static void (*tests[])(void) = {
@@ -30,21 +31,20 @@ static void (*tests[])(void) = {
 int main(int argc, char **argv) {
 	while(1) {
 		int option_index=0;
-		char c = getopt_long(argc, argv, "",
+		int nopt = getopt_long(argc, argv, "",
 				     long_options, &option_index);
-		if (c == -1)
+		if (nopt == -1)
 			break;
-		switch(c) {
+		switch(nopt) {
 		case 0:
-			printf("appel %d\n", option_index);
-			if (option_index == 0)
-				for(int i =0; i < 5; i++)
-					tests[i]();
-			else
-				tests[option_index-1]();
+			for(int i =0; i < 5; i++)
+				tests[i]();
 			break;
 		default:
-			fprintf(stderr, "usage: gctests [--all] [--t[0-4]]\n");
+			if (1 <= nopt && nopt <= 5)
+				tests[nopt-1]();
+			else
+				fprintf(stderr, "usage: gctests [--all] [--t{0-4}]\n");
 		}
 	}
 	return 0;

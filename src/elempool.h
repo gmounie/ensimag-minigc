@@ -7,7 +7,7 @@ struct Elem {
 };
 
 extern struct Elem* allocElem();
-extern gcElems( struct Elem ** heads, int nbheads);
+extern void gcElems( struct Elem ** heads, int nbheads);
 extern void initElems();
 
 #endif
