@@ -26,12 +26,13 @@ endif()
 # Si vous utilisez d'autres fichiers .c, en plus de ceux listés,
 # il faut les ajouter ici
 ##
-add_library(ensigc SHARED src/libgc.c src/libbitset1000.cpp)
-add_executable(ensitestgc tests/gctests.c tests/gctest0.c tests/gctest1.c tests/gctest2.c tests/gctest3.c tests/gctest4.c)
+add_library(ensigc SHARED src/elempool.c src/bitset1000.cpp)
+add_executable(ensitestgc tests/gctests.c tests/test0.c tests/test1.c tests/test2.c tests/test3.c tests/test4.c)
 target_link_libraries(ensitestgc ensigc)
 
 
 ##
 # Programme de test
 ##
-add_test(TestsGC ensitestgc)
+add_test(TestsGC ensitestgc --all)
+add_test(Valgrind valgrind ensitestgc --all)
