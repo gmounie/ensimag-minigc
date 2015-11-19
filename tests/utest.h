@@ -13,9 +13,9 @@
 #define OK(message) do { fprintf(stderr,"SUCCESS: %s\n", message); } while(0)
 
 
-#define u_assert(message, test) do { if (!(test)) FAIL(message); } while(0)
-#define u_isnull(message, test) do { if ((test) != NULL) FAIL(message); } while(0)
-#define u_isnotnull(message, test) do { if ((test) == NULL) FAIL(message); } while(0)
+#define u_assert(message, test) do { if (!(test)) FAIL(message, test); } while(0)
+#define u_isnull(message, test) do { if ((test) != NULL) FAIL(message, test); } while(0)
+#define u_isnotnull(message, test) do { if ((test) == NULL) FAIL(message, test); } while(0)
 #define u_success(message) do { OK(message); } while(0)
 
 #endif
