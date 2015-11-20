@@ -5,7 +5,7 @@
 void test0(void)
 {  
 	struct Elem *e = allocElem();
-	u_isnotnull("unexpected failure in allocation", e);
+	u_isnotnull("unexpected allocation failure", e);
 	e->val = 10;
 	e->next = 0;
 	gcElems(& e, 1);
