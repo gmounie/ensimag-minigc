@@ -65,6 +65,15 @@ void test2(void)
 	e = allocElem();
 	u_isnull("unexpected allocation success", e);
 
+	/* check the list */
+	e = head;
+	for(int j = 0; j < 1000; j++) {
+		u_assert("incoherent val field in Elem",
+			 e->val == (1000 -j - 1));
+		e = e->next;
+	}
+	u_isnull("incoherent end of list", e);
+	
 	/* free all elements */
 	head = NULL;
 	gcElems(& head, 1);
