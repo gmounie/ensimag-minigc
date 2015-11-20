@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
+#include <stdbool.h>
 #include <getopt.h>
 #include "utest.h"
 
@@ -32,14 +33,19 @@ void usage(char *aname) {
   fprintf(stderr, "usage: %s {--all | --t{0-4}}\n", aname);  
 }
 
+/* error count variable instanciation */
+int u_errnb = 0;
+
 int main(int argc, char **argv) {
+	bool noargs = true;
 	while(1) {
 		int option_index=0;
 		int nopt = getopt_long(argc, argv, "",
 				     long_options, &option_index);
 		if (nopt == -1) {
-		  usage(argv[0]);
-		  break;
+			if (noargs)
+				usage(argv[0]);
+			break;
 		}
 		switch(nopt) {
 		case 0:
@@ -51,7 +57,10 @@ int main(int argc, char **argv) {
 				tests[nopt-1]();
 			else
 			  usage(argv[0]);
+			break;
 		}
+		noargs = false;
 	}
-	return 0;
+	fprintf(stderr,"Total number of errors: %d\n", u_errnb);
+	return u_errnb;
 }
