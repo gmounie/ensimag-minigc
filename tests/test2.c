@@ -29,6 +29,7 @@ void test2(void)
 			 e->val == (1000 -j - 1));
 		e = e->next;
 	}
+	u_isnull("incoherent end of list", e);
 
 	/* No element should be freed as all are in the list */
 	gcElems(& head, 1);
@@ -44,6 +45,7 @@ void test2(void)
 			 e->val == (1000 -j - 1));
 		e = e->next;
 	}
+	u_isnull("incoherent end of list", e);
 	
 	/* free all elements */
 	head = NULL;
