@@ -6,7 +6,7 @@ void test3(void)
 {
 	initElems();
 	struct Elem *head = NULL;
-	struct Elem *e = allocElem();
+	struct Elem *e;
 
 	/* allocate 2 * 500 but chain only one other 2 */
 	for(int i=0; i < 500; i++) {

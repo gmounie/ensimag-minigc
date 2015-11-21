@@ -7,7 +7,7 @@ void test4(void)
 	initElems();
 	/* Allocate all the 1000 elements */
 	struct Elem *heads[1000] = {};
-	struct Elem *e = allocElem();
+	struct Elem *e;
 	u_isnotnull("unexpected failure in allocation", e);
 
 	for(int i=0; i < 1000; i++) {
