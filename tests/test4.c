@@ -40,12 +40,12 @@ void test4(void)
 	gcElems(heads, 500);
 
 	/* allocate 500 elements */
-		for(int i=0; i < 1000; i++) {
+	for(int i=500; i < 1000; i++) {
 		e = allocElem();
 		u_isnotnull("unexpected allocation failure", e);
 		
 		e->val = i;
-		e->next = heads[i];
+		e->next = 0;
 		heads[i] = e;
 	}
 	/* No element should be free */
