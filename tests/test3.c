@@ -1,9 +1,11 @@
 #include "utest.h"
 #include "../src/elempool.h"
+#include "../src/bitset1000.h"
 
 
 void test3(void)
 {
+	bt1k_init();
 	initElems();
 	struct Elem *head = NULL;
 	struct Elem *e;
@@ -54,4 +56,5 @@ void test3(void)
 	gcElems(& head, 1);
 
 	u_success("test3");
+	bt1k_destroy();
 }

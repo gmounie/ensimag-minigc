@@ -1,10 +1,12 @@
 #include "utest.h"
 #include "../src/elempool.h"
+#include "../src/bitset1000.h"
 
 
 
 void test2(void)
 {
+	bt1k_init();
 	initElems();
 	/* Allocate all the 1000 elements */
 	struct Elem *head = NULL;
@@ -80,4 +82,5 @@ void test2(void)
 	gcElems(& head, 1);
 
 	u_success("test2");
+	bt1k_destroy();
 }
