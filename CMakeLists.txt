@@ -36,3 +36,4 @@ target_link_libraries(ensitestgc ensigc)
 ##
 add_test(TestsGC ensitestgc --all)
 add_test(Valgrind valgrind ${CMAKE_BINARY_DIR}/ensitestgc --all)
+add_custom_target(check ctest -V)
