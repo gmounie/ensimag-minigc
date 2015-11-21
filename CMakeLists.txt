@@ -35,4 +35,4 @@ target_link_libraries(ensitestgc ensigc)
 # Programme de test
 ##
 add_test(TestsGC ensitestgc --all)
-add_test(Valgrind valgrind ensitestgc --all)
+add_test(Valgrind valgrind ${CMAKE_BINARY_DIR}/ensitestgc --all)
