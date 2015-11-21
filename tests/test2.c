@@ -5,6 +5,7 @@
 
 void test2(void)
 {
+	initElems();
 	/* Allocate all the 1000 elements */
 	struct Elem *head = NULL;
 	struct Elem *e = 0;

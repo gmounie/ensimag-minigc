@@ -4,6 +4,7 @@
 
 void test3(void)
 {
+	initElems();
 	struct Elem *head = NULL;
 	struct Elem *e = allocElem();
 

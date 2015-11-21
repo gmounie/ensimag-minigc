@@ -4,6 +4,7 @@
 
 void test1(void)
 {
+	initElems();
 	for(int i=0; i < 1001; i++) {
 		struct Elem *e = allocElem();
 		u_isnotnull("unexpected allocation failure", e);
