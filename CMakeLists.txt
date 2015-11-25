@@ -36,10 +36,10 @@ target_link_libraries(ensitestgc ensigc)
 # beaucoup plus récent.
 ##
 if(EXISTS /opt/gnat/bin/g++)
-  set(MAKE_CXX_COMPILER /opt/gnat/bin/g++)
+  set(CMAKE_CXX_COMPILER /opt/gnat/bin/g++)
 endif(EXISTS /opt/gnat/bin/g++)
 if(EXISTS /opt/gnat/bin/gcc)
-  set(MAKE_C_COMPILER /opt/gnat/bin/gcc)
+  set(CMAKE_C_COMPILER /opt/gnat/bin/gcc)
 endif(EXISTS /opt/gnat/bin/gcc)
 
 ##
