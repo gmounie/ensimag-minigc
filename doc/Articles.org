@@ -1,0 +1,12 @@
+* Deux articles de Hans Boehm pour patienter
+
+Sur le [[http://www.hboehm.info/][site de Hans Boehm]] les deux articles suivant permettent de
+patienter pour ceux terminant vite:
+ 1) /Garbage Collection in an Uncooperative Environment/, with Mark
+    Weiser, Software Practice & Experience 18, 9 (Sept. 1988),
+    pp. 807-820. [[http://www.hboehm.info/spe_gc_paper][Resurrected preprint]].
+ 2) /Space Efficient Conservative Garbage Collection/, Proceedings of
+    the ACM SIGPLAN '93 Conference on Programming Language Design and
+    Implementation, SIGPLAN Notices 28, 6 (June 1993),
+    pp. 197-206. [[http://www.acm.org/pubs/citations/proceedings/pldi/155090/p197-boehm/][Official version]]. [[http://www.hboehm.info/gc/papers/pldi93.ps.Z][Copy on Hans Boehm website]].
+

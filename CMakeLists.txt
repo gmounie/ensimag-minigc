@@ -6,8 +6,8 @@ endif(COMMAND cmake_policy)
 project(Ensigc)
 enable_testing()
 set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall -Werror -std=gnu11")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Werror -std=gnu++11")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -Wall -std=gnu11")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -std=gnu++11")
 
 #########
 # Gestion des logins
@@ -31,8 +31,20 @@ add_executable(ensitestgc tests/gctests.c tests/test0.c tests/test1.c tests/test
 target_link_libraries(ensitestgc ensigc)
 
 
+###
+# Ensimag CentOS 6: utilisation du compilateur installé pour Ada,
+# beaucoup plus récent.
+##
+if(EXISTS /opt/gnat/bin/g++)
+  set(CMAKE_CXX_COMPILER /opt/gnat/bin/g++)
+endif(EXISTS /opt/gnat/bin/g++)
+if(EXISTS /opt/gnat/bin/gcc)
+  set(CMAKE_C_COMPILER /opt/gnat/bin/gcc)
+endif(EXISTS /opt/gnat/bin/gcc)
+
 ##
 # Programme de test
 ##
 add_test(TestsGC ensitestgc --all)
 add_test(Valgrind valgrind ${CMAKE_BINARY_DIR}/ensitestgc --all)
+add_custom_target(check ctest -V)
